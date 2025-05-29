@@ -1,204 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🎬 Watch Ads & Earn ₹</title>
+  <meta charset="UTF-8">
+  <title>💰 Watch & Earn</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      justify-content: center;
+      font-family: 'Arial', sans-serif;
+      background: #f0f8ff;
       text-align: center;
-    }
-    .container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2rem 3rem;
-      border-radius: 15px;
-      max-width: 420px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      padding: 20px;
+      color: #222;
     }
     h1 {
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      font-size: 2.5rem;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      color: #2e8b57;
+      margin-bottom: 10px;
     }
-    p {
-      font-size: 1.1rem;
-      margin-top: 0;
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-    }
-    .buttons-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    button, input {
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
+    .button {
+      background: linear-gradient(90deg, #2ecc71, #27ae60);
       border: none;
-      border-radius: 50px;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px;
+      font-size: 18px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      outline: none;
-      box-shadow: 0 4px 15px rgba(255,255,255,0.3);
-      flex: 1 1 48%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      font-weight: 600;
+      transition: background 0.3s ease;
+      width: 80%;
+      max-width: 300px;
     }
-    .ad-btn, .visit-btn {
-      background: #ff416c;
-      background: linear-gradient(to right, #ff4b2b, #ff416c);
-      color: #fff;
+    .button:hover {
+      background: linear-gradient(90deg, #27ae60, #1e8449);
     }
-    .ad-btn:hover, .visit-btn:hover {
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-      box-shadow: 0 8px 25px rgba(255,65,108,0.7);
-    }
-    #withdrawBtn {
-      background: #34d399;
-      color: #064e3b;
-      font-weight: 700;
-      margin-top: 10px;
-      flex: 1 1 100%;
-    }
-    #withdrawBtn:hover {
-      background: #059669;
-      color: #d1fae5;
-      box-shadow: 0 8px 25px rgba(5,150,105,0.7);
+    .withdraw {
+      background: linear-gradient(90deg, #3498db, #2980b9);
     }
     input {
-      width: 100%;
-      border: 2px solid #34d399;
-      background: transparent;
-      color: #d1fae5;
-      font-weight: 500;
-      margin-top: 10px;
+      padding: 10px;
+      margin: 15px auto;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 300px;
+      font-size: 16px;
+      text-align: center;
     }
-    input::placeholder {
-      color: #a7f3d0;
-    }
-    .balance {
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
-      font-weight: 600;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-    }
-    .message {
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: #ffe6e6;
-      min-height: 24px;
+    .emoji {
+      font-size: 24px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🎬 Watch Ads & Earn ₹</h1>
-    <p>Earn 💰 ₹0.25 per ad or website visit.<br />Withdraw after ₹100! 🎉</p>
-    
-    <div class="buttons-row">
-      <button class="ad-btn" data-type="ad" data-id="1">▶️ Watch Ad 1</button>
-      <button class="ad-btn" data-type="ad" data-id="2">▶️ Watch Ad 2</button>
-      <button class="ad-btn" data-type="ad" data-id="3">▶️ Watch Ad 3</button>
-      <button class="ad-btn" data-type="ad" data-id="4">▶️ Watch Ad 4</button>
-      <button class="visit-btn" data-type="visit">🌐 Visit Website</button>
-    </div>
+  <h1>💸 Watch Ads & Earn ₹10</h1>
+  <p id="message">Earn ₹0.25 per ad! Watch & earn up to ₹100 to withdraw 💰</p>
 
-    <div class="balance">Balance: ₹<span id="balance">0.00</span></div>
+  <button class="button" onclick="watchAd(1)">🎥 Watch Ad 1</button><br>
+  <button class="button" onclick="watchAd(2)">🎥 Watch Ad 2</button><br>
+  <button class="button" onclick="watchAd(3)">🎥 Watch Ad 3</button><br>
+  <button class="button" onclick="watchAd(4)">🎥 Watch Ad 4</button><br>
 
-    <input
-      type="text"
-      id="upiInput"
-      placeholder="Enter your GPay or Paytm UPI ID"
-    />
-    <button id="withdrawBtn">💸 Withdraw Earnings</button>
-    <div class="message" id="message"></div>
-  </div>
+  <button class="button" onclick="visitWebsite()">🌐 Visit Website & Earn</button><br>
+
+  <input type="text" id="upiInput" placeholder="Enter your GPay / Paytm UPI ID">
+  <button class="button withdraw" onclick="withdraw()">💳 Withdraw</button>
 
   <script>
-    const adLink = "https://otieu.com/4/9390942";
-    const websiteLink = "https://otieu.com/4/4086032";
-    const earnPerClick = 0.25;
-    const withdrawThreshold = 100;
+    window.Telegram.WebApp.ready();
+    const tg = window.Telegram.WebApp;
+    const user = tg.initDataUnsafe?.user;
 
-    let balance = parseFloat(localStorage.getItem("balance") || "0");
+    if (user) {
+      document.getElementById("message").textContent = `👋 Hi ${user.first_name}! Earn ₹0.25 per ad.`;
+    }
 
-    const balanceSpan = document.getElementById("balance");
-    const messageDiv = document.getElementById("message");
-    const upiInput = document.getElementById("upiInput");
-    const withdrawBtn = document.getElementById("withdrawBtn");
+    function watchAd(number) {
+      const adUrl = "https://otieu.com/4/4086032";
+      window.open(adUrl, "_blank");
+      alert(`🎉 Ad ${number} opened. Watch full ad to earn ₹0.25!`);
+    }
 
-    // Display initial balance
-    balanceSpan.textContent = balance.toFixed(2);
+    function visitWebsite() {
+      const websiteUrl = "https://otieu.com/4/4086032";
+      window.open(websiteUrl, "_blank");
+      alert("✅ Website opened! You earned ₹0.25.");
+    }
 
-    // Handle ad/website click
-    document.querySelectorAll("button[data-type]").forEach(button => {
-      button.addEventListener("click", () => {
-        const type = button.getAttribute("data-type");
-        const id = button.getAttribute("data-id") || "";
-        let url = "";
-
-        if (type === "ad") {
-          url = adLink;
-        } else if (type === "visit") {
-          url = websiteLink;
-        }
-
-        // Open link
-        window.open(url, "_blank");
-
-        // Update balance
-        balance += earnPerClick;
-        balanceSpan.textContent = balance.toFixed(2);
-        localStorage.setItem("balance", balance.toFixed(2));
-
-        // Show message
-        messageDiv.textContent = `You earned ₹${earnPerClick.toFixed(2)} from ${type === "ad" ? "Ad " + id : "Website Visit"}!`;
-      });
-    });
-
-    // Withdraw button
-    withdrawBtn.addEventListener("click", () => {
-      const upiId = upiInput.value.trim();
-
-      if (balance < withdrawThreshold) {
-        messageDiv.textContent = `You need ₹${(withdrawThreshold - balance).toFixed(2)} more to withdraw.`;
+    function withdraw() {
+      const upi = document.getElementById("upiInput").value;
+      if (!upi || !upi.includes("@")) {
+        alert("⚠️ Please enter a valid UPI ID.");
         return;
       }
-
-      const upiPattern = /^[\w.\-]{2,}@[a-zA-Z]{2,}$/;
-      if (!upiId || !upiPattern.test(upiId)) {
-        messageDiv.textContent = "Enter a valid UPI ID (e.g., name@upi).";
-        return;
-      }
-
-      // Proceed with withdrawal
-      messageDiv.textContent = `Withdrawing ₹${balance.toFixed(2)} to ${upiId}...`;
-      balance = 0;
-      balanceSpan.textContent = "0.00";
-      localStorage.setItem("balance", "0");
-      upiInput.value = "";
-
-      setTimeout(() => {
-        messageDiv.textContent = "✅ Withdrawal successful! 🎉";
-      }, 3000);
-    });
+      alert(`✅ Withdrawal request sent to ${upi}. You'll receive ₹100 once your balance is full.`);
+    }
   </script>
 </body>
 </html>
