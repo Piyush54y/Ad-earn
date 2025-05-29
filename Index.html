@@ -1,154 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Watch & Earn</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Telegram Mini App JS -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-  <!-- Monetag Rewarded Popup SDK -->
-  <script src='//libtl.com/sdk.js' data-zone='9390825' data-sdk='show_9390825'></script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🎬 Watch Ads & Earn ₹</title>
   <style>
     body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f5f7fa;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      justify-content: center;
       text-align: center;
-      color: #333;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem 3rem;
+      border-radius: 15px;
+      max-width: 420px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
     }
     h1 {
-      font-size: 24px;
-      margin: 20px;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      font-size: 2.5rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     p {
-      font-size: 16px;
-      margin: 0 20px 30px;
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      padding: 0 20px;
+    .buttons-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
     }
-    .card {
-      background: white;
-      border-radius: 15px;
-      padding: 20px 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    button, input {
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 50px;
       cursor: pointer;
-      transition: 0.2s;
+      transition: all 0.3s ease;
+      outline: none;
+      box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+      flex: 1 1 48%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-weight: 600;
     }
-    .card:hover {
-      transform: scale(1.05);
+    .ad-btn, .visit-btn {
+      background: #ff416c;
+      background: linear-gradient(to right, #ff4b2b, #ff416c);
+      color: #fff;
     }
-    .card img {
-      width: 40px;
-      height: 40px;
+    .ad-btn:hover, .visit-btn:hover {
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      box-shadow: 0 8px 25px rgba(255,65,108,0.7);
     }
-    .card p {
-      margin: 10px 0 0;
-      font-weight: bold;
+    #withdrawBtn {
+      background: #34d399;
+      color: #064e3b;
+      font-weight: 700;
+      margin-top: 10px;
+      flex: 1 1 100%;
     }
-    #reward {
-      margin-top: 20px;
-      font-weight: bold;
-      color: green;
+    #withdrawBtn:hover {
+      background: #059669;
+      color: #d1fae5;
+      box-shadow: 0 8px 25px rgba(5,150,105,0.7);
+    }
+    input {
+      width: 100%;
+      border: 2px solid #34d399;
+      background: transparent;
+      color: #d1fae5;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+    input::placeholder {
+      color: #a7f3d0;
+    }
+    .balance {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    .message {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #ffe6e6;
+      min-height: 24px;
     }
   </style>
 </head>
 <body>
-
-  <h1>Watch & Earn : Great Rewards</h1>
-  <p>This is the best app to earn money while sitting at home. Watch ads and earn diamonds.</p>
-
-  <div class="grid">
-    <div class="card" onclick="claimBonus()">
-      <img src="https://img.icons8.com/ios-filled/50/clock.png"/>
-      <p>Claimed Bonus</p>
+  <div class="container">
+    <h1>🎬 Watch Ads & Earn ₹</h1>
+    <p>Earn 💰 ₹0.25 per ad or website visit.<br />Withdraw after ₹100! 🎉</p>
+    
+    <div class="buttons-row">
+      <button class="ad-btn" data-type="ad" data-id="1">▶️ Watch Ad 1</button>
+      <button class="ad-btn" data-type="ad" data-id="2">▶️ Watch Ad 2</button>
+      <button class="ad-btn" data-type="ad" data-id="3">▶️ Watch Ad 3</button>
+      <button class="ad-btn" data-type="ad" data-id="4">▶️ Watch Ad 4</button>
+      <button class="visit-btn" data-type="visit">🌐 Visit Website</button>
     </div>
 
-    <div class="card" onclick="watchAd()">
-      <img src="https://img.icons8.com/ios-filled/50/video-playlist.png"/>
-      <p>Watch Ads</p>
-    </div>
+    <div class="balance">Balance: ₹<span id="balance">0.00</span></div>
 
-    <div class="card" onclick="watchAd()">
-      <img src="https://img.icons8.com/ios-filled/50/video-playlist.png"/>
-      <p>Watch Ads</p>
-    </div>
-
-    <div class="card" onclick="watchAd()">
-      <img src="https://img.icons8.com/ios-filled/50/video-playlist.png"/>
-      <p>Watch Ads</p>
-    </div>
-
-    <div class="card" onclick="watchAd()">
-      <img src="https://img.icons8.com/ios-filled/50/video-playlist.png"/>
-      <p>Watch Ads</p>
-    </div>
-
-    <div class="card" onclick="window.open('https://monetag.com', '_blank')">
-      <img src="https://img.icons8.com/ios-filled/50/internet.png"/>
-      <p>Website Visit</p>
-    </div>
-
-    <div class="card" onclick="showHistory()">
-      <img src="https://img.icons8.com/ios-filled/50/time-machine.png"/>
-      <p>History</p>
-    </div>
-
-    <div class="card" onclick="openSupport()">
-      <img src="https://img.icons8.com/ios-filled/50/headset.png"/>
-      <p>Support</p>
-    </div>
-
-    <div class="card" onclick="requestWithdraw()">
-      <img src="https://img.icons8.com/ios-filled/50/cash-in-hand.png"/>
-      <p>Withdraw</p>
-    </div>
+    <input
+      type="text"
+      id="upiInput"
+      placeholder="Enter your GPay or Paytm UPI ID"
+    />
+    <button id="withdrawBtn">💸 Withdraw Earnings</button>
+    <div class="message" id="message"></div>
   </div>
 
-  <div id="reward"></div>
-
   <script>
-    const userId = Telegram.WebApp.initDataUnsafe?.user?.id || "guest";
+    const adLink = "https://otieu.com/4/9390942";
+    const websiteLink = "https://otieu.com/4/4086032";
+    const earnPerClick = 0.25;
+    const withdrawThreshold = 100;
 
-    function watchAd() {
-      show_9390825('pop').then(() => {
-        document.getElementById('reward').innerText = "🎉 You've earned ₹10!";
-        console.log(`Rewarded user: ${userId}`);
-        // TODO: Save to Firebase if needed
-      }).catch(e => {
-        console.warn("Ad error or skipped:", e);
-        alert("Ad not completed. No reward given.");
+    let balance = parseFloat(localStorage.getItem("balance") || "0");
+
+    const balanceSpan = document.getElementById("balance");
+    const messageDiv = document.getElementById("message");
+    const upiInput = document.getElementById("upiInput");
+    const withdrawBtn = document.getElementById("withdrawBtn");
+
+    // Display initial balance
+    balanceSpan.textContent = balance.toFixed(2);
+
+    // Handle ad/website click
+    document.querySelectorAll("button[data-type]").forEach(button => {
+      button.addEventListener("click", () => {
+        const type = button.getAttribute("data-type");
+        const id = button.getAttribute("data-id") || "";
+        let url = "";
+
+        if (type === "ad") {
+          url = adLink;
+        } else if (type === "visit") {
+          url = websiteLink;
+        }
+
+        // Open link
+        window.open(url, "_blank");
+
+        // Update balance
+        balance += earnPerClick;
+        balanceSpan.textContent = balance.toFixed(2);
+        localStorage.setItem("balance", balance.toFixed(2));
+
+        // Show message
+        messageDiv.textContent = `You earned ₹${earnPerClick.toFixed(2)} from ${type === "ad" ? "Ad " + id : "Website Visit"}!`;
       });
-    }
+    });
 
-    function claimBonus() {
-      alert("🎁 Daily bonus claimed! (Feature coming soon)");
-    }
+    // Withdraw button
+    withdrawBtn.addEventListener("click", () => {
+      const upiId = upiInput.value.trim();
 
-    function requestWithdraw() {
-      const upi = prompt("Enter your UPI ID to withdraw:");
-      if (upi && upi.includes("@")) {
-        alert("✅ Withdrawal request sent!\nUPI: " + upi);
-        console.log("Withdraw UPI ID:", upi, "from user:", userId);
-        // TODO: Save to Firebase later
-      } else {
-        alert("❌ Invalid UPI ID. Please try again.");
+      if (balance < withdrawThreshold) {
+        messageDiv.textContent = `You need ₹${(withdrawThreshold - balance).toFixed(2)} more to withdraw.`;
+        return;
       }
-    }
 
-    function showHistory() {
-      alert("📜 History feature coming soon!");
-    }
+      const upiPattern = /^[\w.\-]{2,}@[a-zA-Z]{2,}$/;
+      if (!upiId || !upiPattern.test(upiId)) {
+        messageDiv.textContent = "Enter a valid UPI ID (e.g., name@upi).";
+        return;
+      }
 
-    function openSupport() {
-      window.open("https://t.me/your_support_bot", "_blank");
-    }
+      // Proceed with withdrawal
+      messageDiv.textContent = `Withdrawing ₹${balance.toFixed(2)} to ${upiId}...`;
+      balance = 0;
+      balanceSpan.textContent = "0.00";
+      localStorage.setItem("balance", "0");
+      upiInput.value = "";
+
+      setTimeout(() => {
+        messageDiv.textContent = "✅ Withdrawal successful! 🎉";
+      }, 3000);
+    });
   </script>
 </body>
 </html>
