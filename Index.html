@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Watch & Earn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Telegram Mini App JS -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- Monetag Rewarded Popup SDK -->
+  <script src='//libtl.com/sdk.js' data-zone='9390825' data-sdk='show_9390825'></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      text-align: center;
+      color: #333;
+    }
+    h1 {
+      font-size: 24px;
+      margin: 20px;
+    }
+    p {
+      font-size: 16px;
+      margin: 0 20px 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      padding: 0 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 40px;
+      height: 40px;
+    }
+    .card p {
+      margin: 10px 0 0;
+      font-weight: bold;
+    }
+    #reward {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Watch & Earn : Great Rewards</h1>
+  <p>This is the best app to earn money while sitting at home. Watch ads and earn diamonds.</p>
+
+  <div class="grid">
+    <div class="card" onclick="claimBonus()">
+      <img src="https://img.icons8.com/ios-filled/50/clock.png"/>
+      <p>Claimed Bonus</p>
+    </div>
+
+    <div class="card" onclick="watchAd()">
+      <img src="https://img.icons8.com/ios-filled/50/video-playlist.png"/>
+      <p>Watch Ads</p>
+    </div>
+
+    <div class="card" onclick="watchAd()">
+      <img src="https://img.icons8.com/ios-filled/50/video-playlist.png"/>
+      <p>Watch Ads</p>
+    </div>
+
+    <div class="card" onclick="watchAd()">
+      <img src="https://img.icons8.com/ios-filled/50/video-playlist.png"/>
+      <p>Watch Ads</p>
+    </div>
+
+    <div class="card" onclick="watchAd()">
+      <img src="https://img.icons8.com/ios-filled/50/video-playlist.png"/>
+      <p>Watch Ads</p>
+    </div>
+
+    <div class="card" onclick="window.open('https://monetag.com', '_blank')">
+      <img src="https://img.icons8.com/ios-filled/50/internet.png"/>
+      <p>Website Visit</p>
+    </div>
+
+    <div class="card" onclick="showHistory()">
+      <img src="https://img.icons8.com/ios-filled/50/time-machine.png"/>
+      <p>History</p>
+    </div>
+
+    <div class="card" onclick="openSupport()">
+      <img src="https://img.icons8.com/ios-filled/50/headset.png"/>
+      <p>Support</p>
+    </div>
+
+    <div class="card" onclick="requestWithdraw()">
+      <img src="https://img.icons8.com/ios-filled/50/cash-in-hand.png"/>
+      <p>Withdraw</p>
+    </div>
+  </div>
+
+  <div id="reward"></div>
+
+  <script>
+    const userId = Telegram.WebApp.initDataUnsafe?.user?.id || "guest";
+
+    function watchAd() {
+      show_9390825('pop').then(() => {
+        document.getElementById('reward').innerText = "🎉 You've earned ₹10!";
+        console.log(`Rewarded user: ${userId}`);
+        // TODO: Save to Firebase if needed
+      }).catch(e => {
+        console.warn("Ad error or skipped:", e);
+        alert("Ad not completed. No reward given.");
+      });
+    }
+
+    function claimBonus() {
+      alert("🎁 Daily bonus claimed! (Feature coming soon)");
+    }
+
+    function requestWithdraw() {
+      const upi = prompt("Enter your UPI ID to withdraw:");
+      if (upi && upi.includes("@")) {
+        alert("✅ Withdrawal request sent!\nUPI: " + upi);
+        console.log("Withdraw UPI ID:", upi, "from user:", userId);
+        // TODO: Save to Firebase later
+      } else {
+        alert("❌ Invalid UPI ID. Please try again.");
+      }
+    }
+
+    function showHistory() {
+      alert("📜 History feature coming soon!");
+    }
+
+    function openSupport() {
+      window.open("https://t.me/your_support_bot", "_blank");
+    }
+  </script>
+</body>
+</html>
